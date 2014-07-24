@@ -71,14 +71,7 @@ function executeWeek(){
           shared: true,
           crosshairs: true
         },
-        plotOptions:{
-          line:{
-            marker: {
-              radius: 1,
-              symbol: "circle"
-            }
-          }
-        },
+        plotOptions: { series: { marker: { enabled: false }}},
         series: [{
           type: 'spline',
           tooltip: { valueSuffix: '°C' },
@@ -158,6 +151,7 @@ function executeWeek(){
           shared: true,
           crosshairs: true
         },
+        plotOptions: { series: { marker: { enabled: false }}},
         series: [{
           type: 'spline',
           tooltip: { valueSuffix: '%' },
@@ -223,6 +217,7 @@ function executeWeek(){
           shared: true,
           crosshairs: true
         },
+        plotOptions: { series: { marker: { enabled: false }}},
         series: [{
           type: 'column',
           yAxis: 1,
