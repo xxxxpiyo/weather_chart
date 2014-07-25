@@ -1,9 +1,9 @@
-function executeWeek(){
+function executeMonth(){
   /**
    * チャート
    **/ 
   $.ajax({
-  url: "/api/hour?start=week",
+  url: "/api/day?start=month",
   type: "GET",
   dataType: 'json',
   success: function(json){
@@ -18,12 +18,12 @@ function executeWeek(){
       /**
        * 気温と紫外線
        **/
-      $('#container4').highcharts({
+      $('#container7').highcharts({
         chart: { zoomType: 'x' },
         title: { text: '気温・気圧・紫外線' },
         xAxis: {
           type: 'datetime',
-          tickInterval: 24 * 3600 * 1000,
+          tickInterval: 5 * 24 * 3600 * 1000,
           tickWidth: 0,
           gridLineWidth: 1
         },
@@ -76,7 +76,7 @@ function executeWeek(){
           type: 'spline',
           tooltip: { valueSuffix: '°C' },
           pointStart: startDate,
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '屋外温度',
           color: "#ffd700",
           data: data['outtemp']
@@ -84,7 +84,7 @@ function executeWeek(){
           type: 'spline',
           tooltip: { valueSuffix: '°C' },
           pointStart: startDate,
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '室内温度',
           color: "#4169e1",
           data: data['intemp']
@@ -92,14 +92,14 @@ function executeWeek(){
           type: 'spline',
           tooltip: { valueSuffix: '°C' },
           pointStart: startDate,
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '結露温度',
           data: data['dewpoint']
         },{
           type: 'column',
           yAxis: 1,
           pointStart: startDate,
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: 'UV Index',
           color: "#ff0000",
           pointPadding: 0,
@@ -109,7 +109,7 @@ function executeWeek(){
           yAxis: 2,
           pointStart: startDate,
           tooltip: { valueSuffix: 'hPa' },
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '気圧',
           data: data['altimeter']
         }]
@@ -118,12 +118,12 @@ function executeWeek(){
       /**
        * 湿度と降水量
        **/
-      $('#container5').highcharts({
+      $('#container8').highcharts({
         chart: { zoomType: 'x' },
         title: { text: '湿度と降水量' },
         xAxis: {
           type: 'datetime',
-          tickInterval: 24 * 3600 * 1000,
+          tickInterval: 5 * 24 * 3600 * 1000,
           tickWidth: 0,
           gridLineWidth: 1
         },
@@ -156,7 +156,7 @@ function executeWeek(){
           type: 'spline',
           tooltip: { valueSuffix: '%' },
           pointStart: startDate,
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '屋外湿度',
           color: "#ffd700",
           data: data['outhumidity']
@@ -164,7 +164,7 @@ function executeWeek(){
           type: 'spline',
           tooltip: { valueSuffix: '%' },
           pointStart: startDate,
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '室内湿度',
           color: "#4169e1",
           data: data['inhumidity']
@@ -173,7 +173,7 @@ function executeWeek(){
           yAxis: 1,
           tooltip: { valueSuffix: 'mm' },
           pointStart: startDate,
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '降水量',
           data: data['dayrain']
         }]
@@ -182,12 +182,12 @@ function executeWeek(){
       /**
        * 風力・風速
        **/
-      $('#container6').highcharts({
+      $('#container9').highcharts({
         chart: { zoomType: 'x' },
         title: { text: '風速・風向' },
         xAxis: {
           type: 'datetime',
-          tickInterval: 24 * 3600 * 1000,
+          tickInterval: 5 * 24 * 3600 * 1000,
           tickWidth: 0,
           gridLineWidth: 1
         },
@@ -217,30 +217,28 @@ function executeWeek(){
           shared: true,
           crosshairs: true
         },
-        //plotOptions: { series: { marker: { enabled: false }}},
+        plotOptions: { series: { marker: { enabled: false }}},
         series: [{
-        /**
           type: 'column',
           yAxis: 1,
           tooltip: { valueSuffix: '°' },
           pointStart: Date.parse(data['datetime'][0]),
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '風向',
           pointPadding: 0.5,
           data: data['winddir']
         },{
-        **/
           type: 'line',
           tooltip: { valueSuffix: 'm/s' },
           pointStart: Date.parse(data['datetime'][0]),
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '平均風速',
           data: data['windspeed']
         },{
           type: 'line',
           tooltip: { valueSuffix: 'm/s' },
           pointStart: Date.parse(data['datetime'][0]),
-          pointInterval: 60 * 60 * 1000,
+          pointInterval: 24 * 3600 * 1000,
           name: '瞬間最大風速',
           data: data['windgust']
         }],
