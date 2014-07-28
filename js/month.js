@@ -260,6 +260,5 @@ function reOrder(data){
       }
     }
   }
-  //console.log(newData);
   return newData;
 }
