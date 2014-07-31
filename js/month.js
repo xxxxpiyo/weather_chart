@@ -16,11 +16,46 @@ function executeMonth(){
       });
 
       /**
+       * 気圧
+       **/
+      $('#container69').highcharts({
+        chart: { zoomType: 'x' },
+        title: { text: '気圧' },
+        xAxis: {
+          type: 'datetime',
+          tickInterval: 5 * 24 * 3600 * 1000,
+          tickWidth: 0,
+          gridLineWidth: 1
+        },
+        yAxis: [{ 
+          title: { text: "気圧(hPa)" },
+          max: 1020,
+          min: 900,
+          tickInterval: 30,
+          startOnTick: false,
+          maxPadding: 0,
+          minPadding: 0
+        }],
+        tooltip: {
+          shared: true,
+          crosshairs: true
+        },
+        plotOptions: { series: { marker: { enabled: false }}},
+        series: [{
+          type: 'area',
+          pointStart: startDate,
+          tooltip: { valueSuffix: 'hPa' },
+          pointInterval: 24 * 3600 * 1000,
+          name: '気圧',
+          data: data['altimeter']
+        }]
+      });
+      /**
        * 気温と紫外線
        **/
       $('#container7').highcharts({
         chart: { zoomType: 'x' },
-        title: { text: '気温・気圧・紫外線' },
+        title: { text: '気温・紫外線' },
         xAxis: {
           type: 'datetime',
           tickInterval: 5 * 24 * 3600 * 1000,
@@ -58,14 +93,6 @@ function executeMonth(){
             width: 0,
             color: '#808080'
           }]
-        },{
-          title: { text: "気圧(hPa)" },
-          max: 1020,
-          min: 900,
-          tickInterval: 30,
-          startOnTick: false,
-          maxPadding: 0,
-          minPadding: 0
         }],
         tooltip: {
           shared: true,
@@ -104,14 +131,6 @@ function executeMonth(){
           color: "#ff0000",
           pointPadding: 0,
           data: data['UV']
-        },{
-          type: 'line',
-          yAxis: 2,
-          pointStart: startDate,
-          tooltip: { valueSuffix: 'hPa' },
-          pointInterval: 24 * 3600 * 1000,
-          name: '気圧',
-          data: data['altimeter']
         }]
       });
 
